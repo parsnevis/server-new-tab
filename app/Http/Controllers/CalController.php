@@ -12,6 +12,8 @@ use App\Models\Date;
 class CalController extends Controller
 {
 
+
+
     /**
      * Create a new controller instance.
      *
