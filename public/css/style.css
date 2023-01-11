@@ -1,0 +1,47 @@
+.month {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 10px 0;
+    border: 1px solid #bdbdbd;
+    padding: 10px 5px;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    width: 106px;
+    /* height: 95px; */
+    margin: 4px;
+    justify-content: space-between;
+    background-color: lightgrey;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.day * {
+    margin: 5px 0 0;
+    text-align: right;
+}
+
+.holiday {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+input.holiday {
+    color: red;
+}
+
+legend {
+    text-align: right;
+}
+
+.day-title {
+    text-align: center;
+    color: black;
+}
+
