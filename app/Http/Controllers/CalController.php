@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
+use App\Models\User;
+use App\Traits\ApiResponser;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use \Morilog\Jalali\Jalalian;
 use \Morilog\Jalali\CalendarUtils;
 use App\functions\HijriDate;
@@ -11,7 +18,7 @@ use App\Models\Date;
 
 class CalController extends Controller
 {
-
+    use ApiResponser;
 
 
     /**
@@ -229,20 +236,285 @@ class CalController extends Controller
     }
 
 
+
+    public function get_calendar_dates()
+    {
+        $calendar_dates = Date::all()->makeHidden(['created_at','updated_at']);
+        // dd($calendar_dates);
+
+        // $calendar_dates = json_encode($calendar_dates);
+        // $today = Jalalian::now()->format("Y/n/j",'','','','en');
+
+
+        return $calendar_dates;
+    }
+
+    public function get_today()
+    {
+        $jalali_today = Jalalian::now()->format("Y/n/j",'','','','en');
+
+//        $today = [];
+//        $today['date'] = $jalali_today;
+//        $today['day']['number'] = Jalalian::now()->format("w", '', '', '', 'en');
+//        $today['day']['name'] = Jalalian::now()->format("l");
+
+        $jalali_today = explode('/', $jalali_today);
+        $year = $jalali_today[0];
+        $month = $jalali_today[1];
+        $day = $jalali_today[2];
+        $month_dates = json_decode(Date::select('_'.$month)->where('year', $year)->first()->makeHidden(['created_at','updated_at'])['_'.$month]);
+        $today = $month_dates->$day;
+        $today->date = $jalali_today;
+
+        return $today;
+    }
+
+
     /**
      * @param string $year
      * @param string $month
      */
-    public function get_date($year, $month)
+    public function get_date($year = null, $month = null)
     {
-        $selected = '_'.$month;
-        return Date::select('year', $selected)->where('year', $year)->first();
+        $jalali_date = Jalalian::now()->format("Y/n/j",'','','','en');
+        $jalali_date = explode('/', $jalali_date);
+//        dd($jalali_date);
+
+        $selected = $month != null ? '_'.$month : '*';
+        $year = $year != null ? $year : $jalali_date[0];
+        // return json_encode(Date::select('year', $selected)->where('year', $year)->first());
+        // return json_encode(Date::select('*')->where('year', $year)->first()->makeHidden(['created_at','updated_at' ]));
+
+        $date = Date::select($selected)->where('year', $year)->first()->makeHidden(['created_at','updated_at']);
+        $date['today'] = $jalali_date;
+
+        //        return json_encode($date);
+        return $date;
+    }
+
+
+    public function create_calendar($year)
+    {
+        require(app_path() . '\functions\HijriDate.php');
+
+        $gregorian_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $jalali_months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شرویور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+        $months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+        $days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+        $cal_types = ["jalali", "gregorian", "hijri"];
+        $text_number = ['یکم', 'دوم', 'سوم', 'چهارم', 'پنجم', 'ششم', 'هفتم', 'هشتم', 'نهم', 'دهم', 'یازدهم', 'دوازدهم', 'سیزدهم', 'چهاردهم', 'پانزدهم', 'شانزدهم', 'هفدهم', 'هجدهم', 'نوزدهم', 'بیستم', 'بیست و یکم', 'بیست و دوم', 'بیست و سوم', 'بیست و چهارم', 'بیست و پنجم', 'بیست و ششم', 'بیست و هفتم', 'بیست و هشتم', 'بیست و نهم', 'سی ام', 'سی و یکم'];
+
+        $db_date = Date::where('year', $year)->first();
+
+        return view('create_calendar', compact('db_date', 'year', 'months', 'days', 'cal_types', 'jalali_months', 'text_number'));
+    }
+
+
+    public function ceartor(Request $request)
+    {
+        $gregorian_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        $hijri_months = ['محرم', 'صفر', 'ربیع الاول', 'ربیع الثانی', 'جمادی الاول', 'جمادی الثانی', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذی القعده', 'ذی الحجه'];
+
+
+        $year = $request->year;
+        $jalali = $request->jalali;
+        $gregorian = $request->gregorian;
+        $hijri = $request->hijri;
+        $holiday = $request->holiday;
+        $holiday_event = $request->holiday_event;
+        $year_date = [];
+
+
+        // dd($request->all());
+
+        $month_date = [];
+        foreach($request->jalali as $key => $month)
+        {
+            // dd($month);
+            foreach($month as $jkey => $jalali_date)
+            {
+                // dd($jalali_date);
+                $month_date[$jkey]['jalali']['date'] = $jalali_date;
+                $month_date[$jkey]['jalali']['event'] = [];
+
+                $month_date[$jkey]['gregorian']['date'] = $gregorian[$key][$jkey];
+                $month_date[$jkey]['gregorian']['event'] = [];
+
+                $month_date[$jkey]['hijri']['date'] = $hijri[$key][$jkey];
+                $month_date[$jkey]['hijri']['event'] = [];
+
+                $month_date[$jkey]['holiday']['is'] = isset($holiday[$key][$jkey]) ? $holiday[$key][$jkey] : 'off';
+                $month_date[$jkey]['holiday']['event'] = $holiday_event[$key][$jkey];
+
+                $str_time = Jalalian::fromFormat('Y/n/j', $jalali_date)->getTimestamp();
+                $month_date[$jkey]['day']['number'] = Jalalian::forge($str_time)->format("w");
+                $month_date[$jkey]['day']['name'] = Jalalian::forge($str_time)->format("l");
+            }
+            $str_time = Jalalian::fromFormat('Y/n/j', $year . '/' . ($key) . '/' . (1))->getTimestamp();
+            $month_date['start_day_number'] = Jalalian::forge($str_time)->format("w");
+
+
+            $first_day = 1;
+            $last_day = 31;
+            if($key == 12)
+            {
+                unset($month_date[31]);
+                unset($month_date[30]);
+                $last_day = 29;
+            }
+            elseif($key > 6)
+            {
+                unset($month_date[31]);
+                $last_day = 30;
+            }
+
+
+            $first_gregorian = explode('/', $month_date[$first_day]['gregorian']['date']);
+            $last_gregorian = explode('/', $month_date[$last_day]['gregorian']['date']);
+
+            if($first_gregorian[0] == $last_gregorian[0])
+                $result_year = $first_gregorian[0];
+            else
+                $result_year = $first_gregorian[0] . ' - ' . $last_gregorian[0];
+
+            if($first_gregorian[1] == $last_gregorian[1])
+                $result_gregorian = $gregorian_months[$first_gregorian[1]-1] . ' ' . $result_year;
+            else
+                $result_gregorian = $gregorian_months[$first_gregorian[1]-1] . ' - ' . $gregorian_months[$last_gregorian[1]-1] . ' ' . $result_year;
+
+            $month_date['include_gregorian_month'] = $result_gregorian;
+
+
+
+            $first_hijri = explode('/', $month_date[$first_day]['hijri']['date']);
+            $last_hijri = explode('/', $month_date[$last_day]['hijri']['date']);
+
+            if($first_hijri[0] == $last_hijri[0])
+                $result_year = $first_hijri[0];
+            else
+                $result_year = $first_hijri[0] . ' - ' . $last_hijri[0];
+
+            if($first_hijri[1] == $last_hijri[1])
+                $result_hijri = $hijri_months[$first_hijri[1]-1] . ' ' . $result_year;
+            else
+                $result_hijri = $hijri_months[$first_hijri[1]-1] . ' - ' . $hijri_months[$last_hijri[1]-1] . ' ' . $result_year;
+
+            $month_date['include_hijri_month'] = $result_hijri;
+
+
+
+            $year_date['_'.$key] = json_encode($month_date);
+        }
+
+
+        $db_date = Date::where('year', $year)->first();
+
+        if($db_date)
+        {
+            $d = Date::where('year', $year)->update($year_date);
+        }
+        else
+        {
+            // $data = ['_1' => $year_date['_1'], '_2' => $year_date['_2'], '_3' => $year_date['_3'], '_4' => $year_date['_4'], '_5' => $year_date['_5'], '_6' => $year_date['_6'],
+            // '_7' => $year_date['_7'], '_8' => $year_date['_8'], '_9' => $year_date['_9'], '_10' => $year_date['_10'], '_11' => $year_date['_11'], '_12' => $year_date['_12']];
+
+            // $data['year'] = $year;
+            // dd($data);
+            // Date::create($data);
+
+            $year_date['year'] = $year;
+            Date::create($year_date);
+        }
+
+        dd($year_date);
+    }
+
+
+    public function user_login_national_id(Request $request)
+    {
+        if($request->has('national_id') and $request->has('password'))
+        {
+            $national_id = $request->national_id;
+            $password = $request->password;
+
+//            $attr = $request->validate([
+//                'email' => 'required|string|email|',
+//                'password' => 'required|string|min:6'
+//            ]);
+
+            $attr = ['national_id' => $national_id,
+                'password' => $password];
+
+            if (!Auth::attempt($attr)) {
+                return $this->error('Credentials not match', 401);
+            }
+
+            $user_array = [
+                'first_name' => auth()->user()->first_name,
+                'last_name' => auth()->user()->last_name,
+                'nice_name' => auth()->user()->nice_name,
+                'national_id' => auth()->user()->national_id,
+                'email' => auth()->user()->email,
+                'mobile' => auth()->user()->mobile,
+                'phone' => auth()->user()->phone,
+                'local_phone' => auth()->user()->local_phone,
+                'profile_image' => auth()->user()->profile_image,
+                'background_image' => auth()->user()->background_image,
+                'reseller_id' => auth()->user()->reseller_id,
+                'regions_id' => auth()->user()->regions_id,
+                'position' => auth()->user()->position,
+//                'api_token' => auth()->user()->api_token,
+                'activated_at' => auth()->user()->activated_at,
+                'token' => auth()->user()->createToken('Chrome Extension Token')->plainTextToken,
+            ];
+
+            return $this->success([
+//                'token' => auth()->user()->createToken('Chrome Extension Token')->plainTextToken,
+//                'token' => auth()->user()->api_token,
+                'user' => $user_array,
+            ]);
+        }
+    }
+
+
+    public function get_phonebook(Request $request)
+    {
+        $auth = auth()->user();
+        $reseller = $auth->reseller;
+
+        $regions = Region::where('reseller_id', $reseller->id)->get()->makeHidden(['created_at', 'updated_at']);
+        $phones = User::where('reseller_id', $reseller->id)->with(['reseller', 'region'])->get()->makeHidden(['created_at', 'updated_at']);
+        return ['regions' => $regions, 'phones' => $phones];
+    }
+
+    public function get_weather(Request $request)
+    {
+//        http://api.weatherapi.com/v1/current.json?key=9a2b547179b14d53888111028222612&q=Tehran&aqi=no
+
+        $weather = Http::retry(3, 100)->get('http://api.weatherapi.com/v1/current.json?key=9a2b547179b14d53888111028222612&q=Tehran&aqi=no');
+
+        return $weather;
     }
 
 
 
 
+//    public function list_region(Request $request)
+//    {
+//        return Region::all();
+//    }
+//
+//    public function tel_number(Request $request)
+//    {
+//        return User::all();
+//    }
 
 
+//    public function get_time()
+//    {
+////        $time = Carbon::now();
+//        $time = Jalalian::now()->format("H:i:s",'','','','en');
+//        return $time;
+//    }
 
 }

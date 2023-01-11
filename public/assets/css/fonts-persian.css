@@ -1,0 +1,295 @@
+/* Define Fonts */
+
+/* Define Fonts */
+@font-face {
+    font-family: peyda;
+    src: url(../fonts/peyda-web/PeydaWeb-Regular.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: peyda;
+    src: url(../fonts/peyda-web/PeydaWeb-Medium.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 500;
+}
+@font-face {
+    font-family: peyda;
+    src: url(../fonts/peyda-web/PeydaWeb-SemiBold.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 600;
+}
+@font-face {
+    font-family: peyda;
+    src: url(../fonts/peyda-web/PeydaWeb-ExtraBold.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 800;
+}
+@font-face {
+    font-family: peyda;
+    src: url(../fonts/peyda-web/PeydaWeb-Black.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 900;
+}
+
+
+@font-face {
+    font-family: iran-yekan-web;
+    /* font-style: normal;
+    font-weight: 300; */
+    src: url(../fonts/iran-yekan-web/iranyekanweblight.eot);
+    src: url(../fonts/iran-yekan-web/iranyekanweblight.eot?#iefix) format("embedded-opentype"),
+    url(../fonts/iran-yekan-web/iranyekanweblight.woff) format("woff"),
+    url(../fonts/iran-yekan-web/iranyekanweblight.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: DastNevis;
+    src: url(../fonts/dast-nevis/DastNevis.woff2) format("woff2");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: TahaNaskh;
+    src: url(../fonts/taha-naskh/BArabics.woff)  format('woff');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: BBadr;
+    src: url(../fonts/badr/BBadr.eot) format('eot'),
+    url(../fonts/badr/BBadr.woff) format('woff'),
+    url(../fonts/badr/BBadr.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: BHoma;
+    src: url(../fonts/homa/BHoma.eot) format('eot'),
+    url(../fonts/homa/BHoma.woff) format('woff'),
+    url(../fonts/homa/BHoma.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: BYekan;
+    src: url(../fonts/yekan/BYekan.eot) format('eot'),
+    url(../fonts/yekan/BYekan.woff) format('woff'),
+    url(../fonts/yekan/BYekan.ttf) format('truetype');
+}
+
+
+
+
+
+
+
+
+@font-face {
+    font-family: iranyekanwebregular;
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/iranyekanwebregular.eot');
+    src: url('../fonts/iranyekanwebregular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/iranyekanwebregular.woff') format('woff'),
+    url('../fonts/iranyekanwebregular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: iranyekanwebbold;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/iranyekanwebbold.eot');
+    src: url('../fonts/iranyekanwebbold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/iranyekanwebbold.woff') format('woff'),
+    url('../fonts/iranyekanwebbold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?gw9wpp');
+    src:  url('../fonts/icomoon.eot?gw9wpp#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?gw9wpp') format('truetype'),
+    url('../fonts/icomoon.woff?gw9wpp') format('woff'),
+    url('../fonts/icomoon.svg?gw9wpp#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'other-icon';
+    src:  url('../fonts/other-icon.eot?lo408d');
+    src:  url('../fonts/other-icon.eot?lo408d#iefix') format('embedded-opentype'),
+    url('../fonts/other-icon.ttf?lo408d') format('truetype'),
+    url('../fonts/other-icon.woff?lo408d') format('woff'),
+    url('../fonts/other-icon.svg?lo408d#other-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: YekanBalkhHeavy;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/YekanBakhHeavy.eot);
+    src: url(../fonts/YekanBakhHeavy.eot) format("embedded-opentype"),
+    url(../fonts/YekanBakhHeavy.woff) format("woff"),
+    url(../fonts/YekanBakhHeavy.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: YekanBalkhBold;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/YekanBakhBold.eot);
+    src: url(../fonts/YekanBakhBold.eot) format("embedded-opentype"),
+    url(../fonts/YekanBakhBold.woff) format("woff"),
+    url(../fonts/YekanBakhBold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: YekanBalkhMedium;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/YekanBakhMedium.eot);
+    src: url(../fonts/YekanBakhMedium.eot) format("embedded-opentype"),
+    url(../fonts/YekanBakhMedium.woff) format("woff"),
+    url(../fonts/YekanBakhMedium.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANYekanMedium;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/iranyekanwebmedium.eot);
+    src: url(../fonts/iranyekanwebmedium.eot) format("embedded-opentype"),
+    url(../fonts/iranyekanwebmedium.woff) format("woff"),
+    url(../fonts/iranyekanwebmedium.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANYekanLight;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/iranyekanweblight.eot);
+    src: url(../fonts/iranyekanweblight.eot) format("embedded-opentype"),
+    url(../fonts/iranyekanweblight.woff) format("woff"),
+    url(../fonts/iranyekanweblight.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANYekanBold;
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/iranyekanwebbold.eot);
+    src: url(../fonts/iranyekanwebbold.eot) format("embedded-opentype"),
+    url(../fonts/iranyekanwebbold.woff) format("woff"),
+    url(../fonts/iranyekanwebbold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/iranyekanwebregular.eot);
+    src: url(../fonts/iranyekanwebregular.eot) format("embedded-opentype"),
+    url(../fonts/iranyekanwebregular.woff) format("woff"),
+    url(../fonts/iranyekanwebregular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANYekanBold;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/iranyekanwebmedium.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansMedium;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/IRANSansWeb_Medium.eot);
+    src: url(../fonts/IRANSansWeb_Medium.eot) format("embedded-opentype"),
+    url(../fonts/IRANSansWeb_Medium.woff2) format("woff2"),
+    url(../fonts/IRANSansWeb_Medium.woff) format("woff"),
+    url(../fonts/IRANSansWeb_Medium.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansLight;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/IRANSansWeb_Light.eot);
+    src: url(../fonts/IRANSansWeb_Light.eot) format("embedded-opentype"),
+    url(../fonts/IRANSansWeb_Light.woff2) format("woff2"),
+    url(../fonts/IRANSansWeb_Light.woff) format("woff"),
+    url(../fonts/IRANSansWeb_Light.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansFaNum;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/IRANSansFaNum.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/IRANSansWeb.eot);
+    src: url(../fonts/IRANSansWeb.eot) format("embedded-opentype"),
+    url(../fonts/IRANSansWeb.woff2) format("woff2"),
+    url(../fonts/IRANSansWeb.woff) format("woff"),
+    url(../fonts/IRANSansWeb.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansBold;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/IRANSansWeb_Bold.eot);
+    src: url(../fonts/IRANSansWeb_Bold.woff) format("woff"),
+    url(../fonts/IRANSansWeb_Bold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: IRANSansLightPersian;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/sansLight.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: OCRA;
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/OCRA.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: ZarinPal;
+    src: url(../fonts/ZarinPal.eot);
+    src: url(../fonts/ZarinPal.eot) format("embedded-opentype"),
+    url(../fonts/ZarinPal.ttf) format("truetype"),
+    url(../fonts/ZarinPal.woff) format("woff"),
+    url(../fonts/ZarinPal.svg) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+/* Social Font Icons */
+@font-face {
+    font-family: 'social-icons';
+    src:  url('../fonts/social-icons.eot');
+    src:  url('../fonts/social-icons.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/social-icons.ttf') format('truetype'),
+    url('../fonts/social-icons.woff') format('woff'),
+    url('../fonts/social-icons.svg#social-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+

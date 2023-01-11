@@ -18,9 +18,24 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'nice_name',
         'email',
+        'reseller_id',
+        'national_id',
+        'mobile',
+        'phone',
+        'profile_image',
+        'background_image',
+        'last_ip',
+        'last_login_at',
+        'activated_at',
         'password',
+        'region_id',
+        'local_phone',
+        'position',
+        'api_token',
     ];
 
     /**
@@ -41,4 +56,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function reseller()
+    {
+        return $this->belongsTo(Reseller::class, 'reseller_id', 'id');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id', 'id');
+    }
+
+
 }

@@ -1,0 +1,577 @@
+:root {
+    --pcms-master: #96183c;
+    --pcms-info: #5bc0de;
+    --pcms-danger: #d9534f;
+    --pcms-warning: #f0ad4e;
+    --pcms-success: #5cb85c;
+    --pcms-request: #6c757d;
+    --pcms-receiving-information: #343a40;
+    --pcms-pickup: #ffc107;
+    --pcms-input-warehouse: #fd7e14;
+    --pcms-forward: #dc3545;
+    /*--pcms-forward: #03a9f4;*/
+    --pcms-receiving-shipment: #e83e8c;
+    --pcms-customs: #6f42c1;
+    --pcms-clearance: #6610f2;
+    --pcms-output-warehouse: #007bff;
+    /*--pcms-ready-deliver: #17a2b8;*/
+    --pcms-ready-deliver: #84c529;
+    --pcms-delivery: #20c997;
+    --pcms-delivered: #5cb85c;
+    --pcms-canceled: #d9534f;
+    --pcms-suspended: #d6d60b;
+
+    --font-family-pcms-persian: iranyekanwebregular;
+    --font-family-pcms-english: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* ############################################### */
+/* ###############  Custom Scroll  ############### */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    margin-right: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+/* ###############  Custom Scroll  ############## */
+/* ############################################### */
+
+a {
+    text-decoration: none !important;
+}
+
+table {
+    table-layout: fixed;
+}
+
+table td, table th {
+    /*text-overflow: ellipsis;*/
+    /*width: auto !important;*/
+    white-space: normal;
+    text-overflow: ellipsis;
+    /*overflow: hidden;*/
+}
+
+.card-header[data-card-widget="collapse"] {
+    cursor: pointer;
+}
+
+.persian-number, .persian-number * {
+    font-family: BHoma;
+}
+
+.navbar-nav {
+    align-items: center;
+}
+.nav-item.calendar-box {
+    padding: 0 0.25rem!important;
+}
+.form-inline {
+    margin: 0;
+}
+
+/* ############################################### */
+/* ###################  Labels  ################## */
+.label {
+    /*font-family: 'IRANYekan';*/
+    border: 1px solid;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    padding: .2em .6em .3em;
+    color: #fff;
+    border-radius: .25em;
+    text-align: center;
+}
+
+.label-info {
+    background-color: var(--pcms-info);
+    border-color: var(--pcms-info);
+}
+.label-danger {
+    background-color: var(--pcms-danger);
+    border-color: var(--pcms-danger);
+}
+.label-warning {
+    background-color: var(--pcms-warning);
+    border-color: var(--pcms-warning);
+}
+.label-success {
+    background-color: var(--pcms-success);
+    border-color: var(--pcms-success);
+}
+
+
+.label-all {
+    background: transparent;
+    border-color: var(--pcms-master);
+    color: var(--pcms-master);
+}
+.text-all {
+    color: var(--pcms-master);;
+}
+
+.label-request {
+    background: transparent;
+    border-color: var(--pcms-request);
+    color: var(--pcms-request);
+}
+.text-request {
+    color: var(--pcms-request);;
+}
+
+.label-receiving-information {
+    background: transparent;
+    border-color: var(--pcms-receiving-information);
+    color: var(--pcms-receiving-information);
+}
+.text-receiving-information {
+    color: var(--pcms-receiving-information);
+}
+
+.label-pickup {
+    background: transparent;
+    border-color: var(--pcms-pickup);
+    color: var(--pcms-pickup);
+}
+.text-pickup {
+    color: var(--pcms-pickup);
+}
+
+.label-input-warehouse {
+    background: transparent;
+    border-color: var(--pcms-input-warehouse);
+    color: var(--pcms-input-warehouse);
+}
+.text-input-warehouse {
+    color: var(--pcms-input-warehouse);
+}
+
+.label-forward {
+    background: transparent;
+    border-color: var(--pcms-forward);
+    color: var(--pcms-forward);
+}
+.text-forward {
+    color: var(--pcms-forward);
+}
+
+.label-receiving-shipment {
+    background: transparent;
+    border-color: var(--pcms-receiving-shipment);
+    color: var(--pcms-receiving-shipment);
+}
+.text-receiving-shipment {
+    color: var(--pcms-receiving-shipment);
+}
+
+.label-customs {
+    background: transparent;
+    border-color: var(--pcms-customs);
+    color: var(--pcms-customs);
+}
+.text-customs {
+    color: var(--pcms-customs);
+}
+
+.label-clearance {
+    background: transparent;
+    border-color: var(--pcms-clearance);
+    color: var(--pcms-clearance);
+}
+.text-clearance {
+    color: var(--pcms-clearance);
+}
+
+.label-output-warehouse {
+    background: transparent;
+    border-color: var(--pcms-output-warehouse);
+    color: var(--pcms-output-warehouse);
+}
+.text-output-warehouse {
+    color: var(--pcms-output-warehouse);
+}
+
+.label-ready-deliver {
+    background: transparent;
+    border-color: var(--pcms-ready-deliver);
+    color: var(--pcms-ready-deliver);
+}
+.text-ready-deliver {
+    color: var(--pcms-ready-deliver);
+}
+
+.label-delivery {
+    background: transparent;
+    border-color: var(--pcms-delivery);
+    color: var(--pcms-delivery);
+}
+.text-delivery {
+    color: var(--pcms-delivery);
+}
+
+.label-delivered {
+    background: transparent;
+    border-color: var(--pcms-delivered);
+    color: var(--pcms-delivered);
+}
+.text-delivered {
+    color: var(--pcms-delivered);
+}
+
+.label-canceled {
+    background: transparent;
+    border-color: var(--pcms-canceled);
+    color: var(--pcms-canceled);
+}
+.text-canceled {
+    color: var(--pcms-canceled);
+}
+
+.label-suspended {
+    background: transparent;
+    border-color: var(--pcms-suspended);
+    color: var(--pcms-suspended);
+}
+.text-suspended {
+    color: var(--pcms-suspended);
+}
+
+/*.label-info {*/
+/*    background-color: #5bc0de;*/
+/*    border-color: #5bc0de;*/
+/*}*/
+/*.label-danger {*/
+/*    background-color: #d9534f;*/
+/*    border-color: #d9534f;*/
+/*}*/
+/*.label-warning {*/
+/*    background-color: #f0ad4e;*/
+/*    border-color: #f0ad4e;*/
+/*}*/
+/*.label-success {*/
+/*    background-color: #5cb85c;*/
+/*    border-color: #5cb85c;*/
+/*}*/
+
+/*.label-request, .label-operator {*/
+/*    background: transparent;*/
+/*    border-color: #96183c;*/
+/*    color: #96183c;*/
+/*}*/
+/*.text-request{*/
+/*    color: #96183c;*/
+/*}*/
+
+/*.label-pickup {*/
+/*    background: transparent;*/
+/*    border-color: #777;*/
+/*    color: #777;*/
+/*}*/
+/*.text-pickup {*/
+/*    color: #777;*/
+/*}*/
+
+/*.label-forward, .label-accounting {*/
+/*    background: transparent;*/
+/*    border-color: #03a9f4;*/
+/*    color: #03a9f4;*/
+/*}*/
+/*.text-forward, .text-Customers {*/
+/*    color: #03a9f4;*/
+/*}*/
+
+/*.label-clearance, .label-customer {*/
+/*    background: transparent;*/
+/*    border-color: #ff6f00;*/
+/*    color: #ff6f00;*/
+/*}*/
+/*.text-clearance, .text-Employees {*/
+/*    color: #ff6f00;*/
+/*}*/
+
+/*.label-ready, .label-management {*/
+/*    background: transparent;*/
+/*    border-color: #84c529;*/
+/*    color: #84c529;*/
+/*}*/
+/*.text-ready {*/
+/*    color: #84c529;*/
+/*}*/
+
+/*.label-deliver {*/
+/*    background: transparent;*/
+/*    border-color: #000;*/
+/*    color: #000;*/
+/*}*/
+/*.text-deliver {*/
+/*    color: #000;*/
+/*}*/
+
+/*.label-cancel, .label-administrator {*/
+/*    background: transparent;*/
+/*    border-color: #e7505a;*/
+/*    color: #e7505a;*/
+/*}*/
+/*.text-cancel {*/
+/*    color: #e7505a;*/
+/*}*/
+
+/*.label-suspended {*/
+/*    background: transparent;*/
+/*    border-color: #d6d60b;*/
+/*    color: #d6d60b;*/
+/*}*/
+/*.text-suspended {*/
+/*    color: #d6d60b;*/
+/*}*/
+
+/*.label-received {*/
+/*    background: transparent;*/
+/*    border-color: #000;*/
+/*    color: #000;*/
+/*}*/
+/*.text-received{*/
+/*    color: #000;*/
+/*}*/
+
+/*.label-error {*/
+/*    background: transparent;*/
+/*    border-color: #d6d60b;*/
+/*    color: #d6d60b;*/
+/*}*/
+/*.text-error{*/
+/*    color: #d6d60b;*/
+/*}*/
+
+.badge-0 {
+    /*display: block;*/
+    font-size: 100%;
+    font-weight: normal;
+    width: fit-content;
+    white-space: normal;
+    margin: auto;
+    padding: 3px;
+}
+
+.badge-1 {
+    display: block;
+    color: #ffffff;
+    background-color: #ff0000;
+    font-size: 90%;
+    width: fit-content;
+    white-space: normal;
+    margin: auto;
+}
+
+.badge-2 {
+    display: block;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 90%;
+    width: fit-content;
+    white-space: normal;
+    margin: auto;}
+/* #################  End Labels  ################ */
+/* ############################################### */
+
+
+/* ############################################### */
+/* ###########  Custom Checkbox Switch  ########## */
+.onoffswitch {
+    position: relative;
+    width: 52px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none !important;
+}
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    border: 1px solid #999999;
+    border-radius: 20px;
+    background-color: #e9ebef;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block;
+    width: 20px;
+    margin: 0px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 32px;
+    border: 1px solid #999999;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #5cb85c;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label,
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    border-color: #5cb85c;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px;
+}
+.onoffswitch-checkbox:disabled + .onoffswitch-label {
+    opacity: 0.5;
+}
+/* ###########  Custom Checkbox Switch  ########## */
+/* ############################################### */
+
+
+/* ############################################### */
+/* ###################  Agents  ################## */
+.agent_logo {
+    width: 50px;
+    height: 27px;
+}
+/* #################  End Agents  ################ */
+/* ############################################### */
+
+
+/* ############################################### */
+/* ##################  Shipment  ################# */
+.thumb-table {
+    width: 25px;
+    height: 25px;
+    margin: 3px;
+}
+
+.add-pallet, .add-carton, .add-bag {
+    cursor: pointer;
+}
+
+th.id {
+    width: auto !important;
+}
+th.name {
+    /*width: 50px !important;*/
+}
+th.email {
+    /*width: 30px !important;*/
+}
+th.shipment-number {
+    /*width: 50px !important;*/
+    width: 10% !important;
+}
+th.date {
+    /*width: 60px !important;*/
+    width: 10% !important;
+}
+th.country {
+    /*width: 70px !important;*/
+    width: 10% !important;
+}
+th.weight {
+    /*width: 60px !important;*/
+    width: 7.5% !important;
+}
+th.status {
+    width: 8.5% !important;
+}
+th.reference-number {
+    /*width: 85px !important;*/
+    width: 10% !important;
+}
+th.operation {
+    /*width: 1px !important;*/
+    width: 16.5% !important;
+}
+
+
+td.email *{
+    font-size: 14px;
+    /*width: 30px !important;*/
+}
+td.operation * {
+    font-size: 14px;
+    font-weight: 600;
+    /*width: 1px !important;*/
+}
+
+.status-box.active * {
+    font-weight: 700;
+}
+
+/* ################  End Shipment  ############### */
+/* ############################################### */
+
+/* ############################################### */
+/* ################  Settings  ############### */
+.setting-favicon {
+    margin: 27px -22px 0 0;
+    width: 30px;
+}
+
+.setting-logo {
+    margin: 32px -25px 0 0;
+    width: 75px;
+}
+
+.setting-logo-small {
+    margin: 27px -22px 0 0;
+    width: 30px;
+}
+/* ################  End Settings  ############### */
+/* ############################################### */
+
+
+#clock, .clock {
+    font-family: 'clock-font';
+    font-weight: bold;
+    /* color: black; */
+    font-size: 15px;
+}
+
+.gregorian-date-box * {
+    text-align: left;
+}
+
+.gregorian-date {
+    font-family: Arial;
+}
+
+.main-footer span,
+.main-footer strong,
+.main-footer a{
+    font-size: 13px;
+}
+
+.fa-rotate-310 {
+    -webkit-transform: rotate(310deg);
+    -moz-transform: rotate(310deg);
+    -ms-transform: rotate(310deg);
+    -o-transform: rotate(310deg);
+    transform: rotate(310deg);
+}
+
+.table td, .table th {
+    padding: 0.5rem 0.25rem;
+}
+
+.btn-group-1 {width: fit-content;}
+
+
+.scrollable {
+    height: 250px;
+    overflow: auto;
+}
