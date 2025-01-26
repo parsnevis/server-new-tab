@@ -35,6 +35,7 @@ use App\Http\Controllers\Reseller\Auth\ForgotPasswordController;
 use App\Http\Controllers\Reseller\Auth\ResetPasswordController;
 use App\Http\Controllers\Reseller\ResellerController;
 use App\Http\Controllers\Reseller\UserController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/clear_cache', function() {
+    // $exitCode = Artisan::call('cache:clear');
+    // $exitCode = Artisan::call('config:cache');
+    
+   
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:clear');
+    
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('config:cache');
+
+
+   return "Cache cleared successfully";
+});
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -62,10 +79,12 @@ Route::get('/create-calendar/{year}', [CalController::class, 'create_calendar'])
 Route::post('/ceartor', [CalController::class, 'ceartor'])->name('ceartor');
 
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
+Route::get('/landing', [HomeController::class, 'landing'])->name('landing');
 
 
 Route::get('/register/from/app/create', [HomeController::class, 'register_from_app_create'])->name('register_from_app_create');
-Route::post('/register/from/app/store', [RegisterController::class, 'register'])->name('register_from_app_store');
+Route::post('/register/reseller/from/app/store', [RegisterController::class, 'register'])->name('register_reseller_from_app_store');
+Route::post('/register/user/from/app/store', [HomeController::class, 'register_user_from_app_store'])->name('register_user_from_app_store');
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -138,7 +157,7 @@ Route::post('/register/from/app/store', [RegisterController::class, 'register'])
 | All the reseller routes will be defined here...
 |------------------
 */
-Route::prefix('/reseller')->name('reseller.')->middleware(['activate'])->group(function(){
+Route::prefix('/reseller')->name('reseller.')->group(function(){
 
     Route::get('/', function () {return redirect('reseller/login');})->name('reseller');
 
@@ -165,7 +184,7 @@ Route::prefix('/reseller')->name('reseller.')->middleware(['activate'])->group(f
 
 
 //    Route::group(['middleware' => ['role_or_permission:Super User|Management|Administrator|', 'SetLang']],
-    Route::namespace('reseller')->group(function () {
+    Route::namespace('reseller')->middleware(['activate'])->group(function () {
 
             Route::get('dashboard', [ResellerController::class, 'index'])->name('dashboard');
             Route::get('profile', [ResellerController::class, 'profile'])->name('profile');

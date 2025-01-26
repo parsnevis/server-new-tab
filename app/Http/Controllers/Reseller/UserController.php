@@ -34,7 +34,7 @@ class UserController extends Controller
         $_auth = Auth::User();
 
         $users = User::select('*')
-            ->where('reseller_id', $_auth->reseller_id)
+            ->where('reseller_id', $_auth->id)
             ->paginate();
         $page = 1;
 //        dd($users);
@@ -63,6 +63,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $_auth = Auth::User();
 
         $request->validate([

@@ -24,9 +24,11 @@ use App\Http\Controllers\AuthController;
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::group(['middleware' => ['auth:sanctum']], function() {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::get('/me', function(Request $request) { return auth()->user(); });
+    Route::get('/me', function (Request $request) {
+        return auth()->user();
+    });
 
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 
@@ -35,14 +37,14 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/get-phonebook', [CalController::class, 'get_phonebook'])->name('get_phonebook');
 
 
-//    Route::get('/list-region', [CalController::class, 'list_region'])->name('list_region');
-//    Route::get('/tel-number', [CalController::class, 'tel_number'])->name('tel_number');
+    //    Route::get('/list-region', [CalController::class, 'list_region'])->name('list_region');
+    //    Route::get('/tel-number', [CalController::class, 'tel_number'])->name('tel_number');
 });
 
 
-Route::group(['middleware' => ['cors']], function() {
+Route::group(['middleware' => ['cors']], function () {
 
-//    Route::get('/get-time', [CalController::class, 'get_time'])->name('get_timey');
+    //    Route::get('/get-time', [CalController::class, 'get_time'])->name('get_timey');
 
     Route::get('/get-today', [CalController::class, 'get_today'])->name('get_today');
 
@@ -51,11 +53,10 @@ Route::group(['middleware' => ['cors']], function() {
 
     Route::get('/get-date/{year?}/{month?}', [CalController::class, 'get_date'])->name('get_date');
 
-    Route::post('/user/login/national-id', [CalController::class, 'user_login_national_id'])->name('user_login_national_id');
+    // Route::post('/user/login/national-id', [CalController::class, 'user_login_national_id'])->name('user_login_national_id');
+    Route::post('/user/login/mobile', [CalController::class, 'user_login_mobile'])->name('user_login_mobile');
 
     Route::post('/get-weather', [CalController::class, 'get_weather'])->name('get_weather');
+
+    Route::get('/get-music', [CalController::class, 'get_music'])->name('get_music');
 });
-
-
-
-

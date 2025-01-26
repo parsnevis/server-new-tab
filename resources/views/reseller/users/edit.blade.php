@@ -77,7 +77,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-3">
+                                                    <!-- <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="national_id" class="control-label">
                                                                 <span class="req text-danger">* {{ __('lang.' . strtoupper('national_id')) }}</span>
@@ -89,7 +89,7 @@
                                                     </span>
                                                             @enderror
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">

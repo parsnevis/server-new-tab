@@ -10,7 +10,7 @@ class ResellerController extends Controller
 {
     public function __constarct()
     {
-        $this->middleware('auth:reseller');
+//        $this->middleware('auth:reseller');
     }
 
 
@@ -22,6 +22,7 @@ class ResellerController extends Controller
      */
     public function index(Request $request)
     {
+//        dd(Auth::guard('reseller')->user());
         $_auth = Auth::guard('reseller')->User();
 //        $_url = $this->baseData($request)['url'];
 //        $_siteSettings = app('requireFunction')->siteSettings();

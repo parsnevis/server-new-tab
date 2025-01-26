@@ -77,5 +77,7 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
 //        'json.response' => \App\Http\Middleware\ForceJsonResponse::class,
+
+        'activate' => \App\Http\Middleware\CheckActivate::class,
     ];
 }
